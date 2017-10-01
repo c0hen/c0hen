@@ -1,0 +1,5 @@
+# Jekyll generated content after every update
+_site/
+github/
+.bundle/
+Gemfile.lock
