@@ -1,4 +1,5 @@
+description: Journal of my tinkering.
 name: C0hen
 markdown: kramdown
-
+favorite_color: blue
 theme: jekyll-theme-minimal
