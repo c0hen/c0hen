@@ -1,2 +1,4 @@
 name: C0hen
 markdown: kramdown
+
+theme: jekyll-theme-minimal
