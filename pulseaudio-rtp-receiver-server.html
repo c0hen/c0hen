@@ -9,7 +9,7 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   <h3>Server starts all functions at boot, no X needed</h3>
   <p> Install pulseaudio-module-zeroconf on both client and server:
   
-  ```
+  ```sh
   $sudo apt-get install pulseaudio-module-zeroconf
   ```
 
@@ -18,14 +18,14 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   <p>utilize systemd user services. Needed for pulseaudio to start after network is actually up, rtp module will fail without it.</p>
   <p>This creates files in 
   
-  ```
+  ```sh
   ~/.config/{systemd,pulseaudio}
   ```
 
   </p>
   <p>Groups useful or needed for the user starting pulseaudio:
   
-  ```
+  ```sh
   $cat /etc/group | grep radiouser
     
   audio:x:29:radiouser,pulse
@@ -41,7 +41,7 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   </p>
   <ol> Pulseaudio user configuration, creating the listener:
 
-  ```
+  ```sh
   # ~/.config/pulse/default.pa
 
   .include /etc/pulse/default.pa
@@ -65,7 +65,7 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   </ol>
   <ol>Link network target (no systemctl enable needed):
 
-  ```
+  ```sh
   $systemctl --user link /lib/systemd/system/network-online.target
   ```
 
@@ -73,25 +73,26 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   <ol>Enable lingering services
   to make them not exit with user logout.
 
-  ```
+  ```sh
   $sudo loginctl enable-linger radiouser
   ```
   
   </ol>
   <ol>
-  ```
+
+  ```sh
   ~/.config/systemd/user/pulseaudio.service
   ```
   
   based on 
 
-  ```
+  ```sh
   /usr/lib/systemd/user/pulseaudio.service
   ```
 
   from debian stretch.
 
-  ```
+  ```sh
   [Unit]
   Description=Sound Service
 
@@ -125,7 +126,7 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   </ol>
   <ol> Check to see if files exist:
   
-  ```
+  ```sh
   ls ~./config/systemd/user/{.,default.target.wants}
 
   /home/radiouser/.config/systemd/user/.:
@@ -138,14 +139,14 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   </ol>
   <ol> Start pulseaudio:
   
-  ```
+  ```sh
   $systemctl --user start pulseaudio.service
   ```
 
   </ol>
   <ol> Check sink and source levels and mute with
 
-  ```
+  ```sh
   $pacmd
   $pactl
   ```
@@ -153,9 +154,10 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   </ol>
   <p> If all is well, enable the user service: </p>
 
-  ```
+  ```sh
   $systemctl --user enable pulseaudio.service
   ```
+
   <h3>Client side: </h3>
   <p> Configure a source to broadcast with <a href="https://freedesktop.org/software/pulseaudio/paprefs/#documentation">Paprefs</a>. Make sure you have the correct ip for your machine if you used that or configure <a href="https://wiki.archlinux.org/index.php/PulseAudio/Configuration#Connection_.26_authentication">cookie authentication</a>.
   </p>
