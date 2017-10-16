@@ -3,3 +3,4 @@ name: C0hen
 markdown: kramdown
 favorite_color: blue
 theme: jekyll-theme-minimal
+highlighter: rouge
