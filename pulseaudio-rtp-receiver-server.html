@@ -39,7 +39,8 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   ```
 
   </p>
-  <ol><p> Pulseaudio user configuration, creating the listener:
+  <ol>
+  <li><p> Pulseaudio user configuration, creating the listener:
 
   ```sh
   # ~/.config/pulse/default.pa
@@ -62,23 +63,23 @@ title: Pulseaudio RTP receiver server on Debian Stretch
 
   ```
 
-  </p></ol>
-  <ol><p>Link network target (no systemctl enable needed):
+  </p></li>
+  <li><p>Link network target (no systemctl enable needed):
 
   ```sh
   $systemctl --user link /lib/systemd/system/network-online.target
   ```
 
-  </p></ol>
-  <ol><p>Enable lingering services
+  </p></li>
+  <li><p>Enable lingering services
   to make them not exit with user logout.
 
   ```sh
   $sudo loginctl enable-linger radiouser
   ```
   
-  </p></ol>
-  <ol><p>
+  </p></li>
+  <li><p>
 
   ```sh
   ~/.config/systemd/user/pulseaudio.service
@@ -123,8 +124,8 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   
   ```
 
-  </p></ol>
-  <ol><p> Check to see if files exist:
+  </p></li>
+  <li><p> Check to see if files exist:
   
   ```sh
   ls ~./config/systemd/user/{.,default.target.wants}
@@ -136,22 +137,23 @@ title: Pulseaudio RTP receiver server on Debian Stretch
   pulseaudio.service
   ```
 
-  </p></ol>
-  <ol><p> Start pulseaudio:
+  </p></li>
+  <li><p> Start pulseaudio:
   
   ```sh
   $systemctl --user start pulseaudio.service
   ```
 
-  </p></ol>
-  <ol><p> Check sink and source levels and mute with
+  </p></li>
+  <li><p> Check sink and source levels and mute with
 
   ```sh
   $pacmd
   $pactl
   ```
 
-  </p></ol>
+  </p></li>
+  </ol>
   <p> If all is well, enable the user service: </p>
 
   ```sh
