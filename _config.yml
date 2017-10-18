@@ -1,5 +1,6 @@
 description: Journal of my tinkering.
 name: C0hen
+encoding: utf-8
 markdown: kramdown
 favorite_color: blue
 theme: jekyll-theme-minimal
