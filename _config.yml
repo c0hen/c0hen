@@ -5,3 +5,19 @@ markdown: kramdown
 favorite_color: blue
 theme: jekyll-theme-minimal
 highlighter: rouge
+kramdown:
+  auto_ids:       true
+  entity_output:  as_char
+  toc_levels:     1..6
+  line_width: 72
+  # Programmer's world compliant config
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  # inline table nil
+  coderay_line_numbers: nil
+  coderay_tab_width: 4
+  # :span :div nil
+  coderay_wrap: nil
+  # Github Flavored Markdown parser
+  input:          GFM
+  hard_wrap:      false
+  footnote_nr:    1
