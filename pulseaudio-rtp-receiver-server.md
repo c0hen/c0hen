@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Pulseaudio RTP receiver server on Debian Stretch
 ---
   <h1>Pulseaudio RTP receiver server on Debian Stretch</h1>
