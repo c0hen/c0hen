@@ -22,7 +22,7 @@ $git status
 $touch legionkitteh
 $git add .
 $git status
-$git git commit -a -m'Short commit message commiting all changes'
+$git git commit -a -m'Short commit message committing all changes'
 $echo 'It's dangerous to go alone! Take this.' >> legionkitteh
 $git add legionkitteh
 $git commit --amend
