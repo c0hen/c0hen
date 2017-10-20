@@ -84,7 +84,7 @@ pulse-access:x:114:radiouser
   
     from debian stretch.
   
-    ```sh
+    ```c
     [Unit]
     Description=Sound Service
   

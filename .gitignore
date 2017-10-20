@@ -1,4 +1,5 @@
 # Jekyll generated content after every update
 _site/
+.jekyll-metadata
 github/
 .bundle/
