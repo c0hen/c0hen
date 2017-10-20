@@ -10,7 +10,8 @@ kramdown:
   entity_output:  as_char
   toc_levels:     1..6
   line_width: 72
-  # Programmer's world compliant config
+  # Programmer's world compliant config: 
+  # disable changing quotes to literary.
   smart_quotes: ["apos", "apos", "quot", "quot"]
   # inline table nil
   coderay_line_numbers: nil
@@ -23,16 +24,20 @@ kramdown:
   footnote_nr:    1
   syntax_highlighter: rouge
 
-  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # Rouge Highlighter in Kramdown › 
+  # http://kramdown.gettalong.org/syntax_highlighter/rouge.html
   # span, block element options fall back to global
   syntax_highlighter_opts:
-    # Rouge Options › https://github.com/jneen/rouge#full-options
-    css_class: 'highlight'
-    line_numbers: false
+    # https://github.com/jneen/rouge/blob/master/README.md
+    line_format: '%i' # a sprintf template for the line number itself
+    table_class: 'rouge-table'
+    gutter_class: 'rouge-gutter'
+    code_class: 'rouge-code'
+    # css_class is lecagy
+    css_class: 'highlighter-rouge'
     #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
-    # TODO: debug line number opacity.
-    #span:
-      #line_numbers: false
-      #block:
-      #  line_numbers: true
-      #  start_line: 1
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1

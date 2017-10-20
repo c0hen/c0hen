@@ -21,18 +21,21 @@
 }
 
 .highlight {
+  /*  Rouge: the highlight token for line numbers is Generic::Lineno. 
+   *  No CSS class for line numbers it seems. */
   pre.lineno {
     border: none;
     @include opacity(0.6);  
   }
 
-  .lineno {
-    @include opacity(0.6);  
-    @include unselectable();
-    font-style: italic;
-  }
+// replace with line_format in syntax_highligter_opts?
+//  .lineno {
+//    @include opacity(0.6);  
+//    @include unselectable();
+//    font-style: italic;
+//  }
 
-  .gutter {
+  .rouge-gutter {
     border-right: 1px solid #ccc;
   }
 

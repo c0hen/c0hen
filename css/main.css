@@ -1,11 +1,31 @@
 @import url("reset.css")
-
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/@import */
+
+/* Center anything: */
+/* https://stackoverflow.com/questions/6464592/how-to-align-entire-html-body-to-the-center */
+.centered-wrapper {
+    position: relative;
+    text-align: center;
+}
+.centered-wrapper:before {
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 0; height: 100%;
+    vertical-align: middle;
+}
+.centered-content {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* end center anything */
 
 body {
   margin: 30px auto;
   width: 80%;
 }
+
 nav ul, footer ul {
   font-family:"Noto Sans", "Liberation Sans", "Arial", sans-serif;
   padding: 0px;
@@ -54,6 +74,16 @@ ul.posts li {
   list-style: none;
 }
 
-.highlight {
-  font-size: 1.3em;
+/* Code higlighting */
+.highlighter-rouge {
+  font-size: 1.1em;
+}
+
+.rouge-code {
+  font-size: 1.1em;
+}
+
+/* Niggas want the gutter - Ice Cube */
+.rouge-gutter {
+  opacity: 0.6;
 }

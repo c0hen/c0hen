@@ -19,12 +19,6 @@ $sudo apt-get install pulseaudio-module-zeroconf
 
 Utilize systemd user services. Needed for pulseaudio to start after network is actually up, rtp module will fail without it.
 
-This creates files in 
-
-```sh
-~/.config/{systemd,pulseaudio}
-```
-
 Groups useful or needed for the user starting pulseaudio:
 
 ```sh
@@ -124,7 +118,7 @@ pulse-access:x:114:radiouser
 5.  Check to see if files exist:
     
     ```sh
-    ls ~./config/systemd/user/{.,default.target.wants}
+    $ls ~./config/systemd/user/{.,default.target.wants}
   
     /home/radiouser/.config/systemd/user/.:
     default.target.wants  network-online.target  pulseaudio.service  sockets.target.wants
@@ -156,7 +150,7 @@ pulse-access:x:114:radiouser
 
 ### Client side:
 
-Configure a source to broadcast with [Paprefs](https://freedesktop.org/software/pulseaudio/paprefs/#documentation). Make sure you have the correct ip for your machine if you used that or configure [cookie authentication](https://wiki.archlinux.org/index.php/PulseAudio/Configuration#Connection_.26_authentication).
+Configure a source to broadcast with [Paprefs](https://freedesktop.org/software/pulseaudio/paprefs/#documentation). Make sure you have the correct IP for your machine if you used that or configure [cookie authentication](https://wiki.archlinux.org/index.php/PulseAudio/Configuration#Connection_.26_authentication).
 
 Other programs that broadcast RTP can be used, YMMV.
 
