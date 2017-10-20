@@ -2,9 +2,12 @@
 layout: default
 title: Pulseaudio RTP receiver server on Debian Stretch
 ---
-#Pulseaudio RTP receiver server on Debian Stretch
-##Based on Debian Stretch 9.2 20171016
-###Server starts all functions at boot, no X needed
+
+# Pulseaudio RTP receiver server on Debian Stretch
+
+## Based on Debian Stretch 9.2 20171016
+
+### Server starts all functions at boot, no X needed
 
 Install pulseaudio-module-zeroconf on both client and server:
 
@@ -12,7 +15,7 @@ Install pulseaudio-module-zeroconf on both client and server:
 $sudo apt-get install pulseaudio-module-zeroconf
 ```
 
-###Server side:
+### Server side:
 
 Utilize systemd user services. Needed for pulseaudio to start after network is actually up, rtp module will fail without it.
 

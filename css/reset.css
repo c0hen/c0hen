@@ -1,0 +1,13 @@
+/* Source links: */
+/* https://benfrain.com/a-modern-css-reset-with-caveats/ */
+/* https://hg.mozilla.org/mozilla-central/file/ade8d4a63e57/layout/style/res/html.css#l714 */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/all */
+
+* {
+    all: unset;
+}
+
+/* Thanks to L. David Baron for this: https://twitter.com/davidbaron/status/794138427952222210 */
+base, basefont, datalist, head, meta, script, style, title, noembed, param, template {
+  display: none;
+}
