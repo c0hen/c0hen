@@ -4,8 +4,6 @@ title: Git handbook
 permalink: /git-handbook/
 ---
 
-# Git handbook
-
 Thoroughly assemble your .gitignore - files excluded from the remote repository.
 SSH keys can be used to access Github
 <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>

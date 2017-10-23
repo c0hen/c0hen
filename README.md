@@ -1,9 +1,14 @@
-# c0hen
-Journal
+---
+title: README
+layout: default
+permalink: /README/
+---
 
 Testing Jekyll and trying to organize my tinkerings.
 
+Highlighting with
 Rouge 
+https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers
 
 rougify style github > rouge.css
 
@@ -11,13 +16,14 @@ Github.io's Jekyll site rebuilds after a push.
 
 Markdown (*.md) comments:
 
+```
 [//]: # (This may be the most platform independent comment)
 
 [//]: # (Note to self: no <p> around markdown or parser switches to inline html.)
 
 [//]: # (Class needs to be on the same line with image, otherwise an empty <p> will get the attr.)
 
-[//]: # ![Blue buffalo of spades](/images/favicon-152.png){:class="centered-wrapper" height="100px" width="50px"}
+[//]: # (![Blue buffalo of spades](/images/favicon-152.png){:class="centered-wrapper" height="100px" width="50px"})
+```
 
-Liquid Snippets {% code %} in the _includes directory
-
+Liquid Snippets in the _includes directory.
