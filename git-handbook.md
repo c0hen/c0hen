@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Git handbook
+permalink: /git-handbook/
 ---
 
 # Git handbook
@@ -9,9 +10,9 @@ Thoroughly assemble your .gitignore - files excluded from the remote repository.
 SSH keys can be used to access Github
 <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
 
-Try to use small changes/commits and concise messages.
+**Try to use small changes/commits and concise messages.**
 
-Basic flow:
+### Basic flow:
 
 ```sh
 $git pull
@@ -32,19 +33,27 @@ $git push
 
 [Try and learn it on Github](https://try.github.io/levels/1/challenges/1)
 
-Display commit messages:
+ Display commit messages:
 
 ```sh
 $git log
 ```
 
-Remove a file that recently became untracked in .gitignore from repo:
+ Remove a file that recently became untracked in .gitignore from repo:
 
 ```sh
 $git rm --cached foo
 ```
 
-Remove pushed commit from repo (don't do this in public ones, others may be using it already):
+ Get a copy of a file discarding changes since last $git add
+
+```sh
+$git checkout foo
+```
+
+ Remove pushed commit from repo 
+
+Don't do this in public ones, others may be using it already
 
 ```sh
 $git reset --hard 40digit_commit_id

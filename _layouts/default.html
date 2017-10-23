@@ -5,13 +5,13 @@
     <title>{{ page.title }}</title>
     <!-- link to main stylesheet -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="shortcut icon" href="images/favicon-16.png">
+    <link rel="shortcut icon" href="/images/favicon-16.png">
   </head>
   <body class="centered-wrapper">
   <nav>
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/git-handbook.html">Git handbook</a></li>
+    <li><a href="/git-handbook">Git handbook</a></li>
     <li><a href="/about">About</a></li>
     <li> 
     {% include dynamic_menu.html %}
@@ -22,7 +22,7 @@
     -->
   </ul>
   </nav>
-  <div class="container">
+  <div class="container centered-wrapper">
   
   {{ content }}
   

@@ -8,5 +8,4 @@ The site of a technician and sysadmin who likes to tinker and prevent unfavourab
 
 Rule #1: cardio.
 
-![Blue buffalo of spades](/images/favicon-152.png)
-
+![Blue buffalo of spades](/images/favicon-152.png){:class="centered-content"}

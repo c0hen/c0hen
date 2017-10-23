@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pulseaudio RTP receiver server on Debian Stretch
+permalink: /pulseaudio-rtp-receiver-server/
 ---
 
 # Pulseaudio RTP receiver server on Debian Stretch
