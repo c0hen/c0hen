@@ -2,6 +2,7 @@ description: Journal of my tinkering.
 name: C0hen
 encoding: utf-8
 markdown: kramdown
+permalink: /:slug/
 favorite_color: blue
 theme: jekyll-theme-minimal
 highlighter: rouge

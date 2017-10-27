@@ -1,7 +1,6 @@
 ---
 title: README
 layout: default
-permalink: /README/
 ---
 
 Testing Jekyll and trying to organize my tinkerings.

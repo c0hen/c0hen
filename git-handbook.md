@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Git handbook
-permalink: /git-handbook/
 ---
 
 Thoroughly assemble your .gitignore - files excluded from the remote repository.
