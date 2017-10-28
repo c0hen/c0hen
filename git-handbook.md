@@ -39,13 +39,13 @@ $git log
 #### Remove a file that recently became untracked in .gitignore from repo
 
 ```sh
-$git rm --cached foo
+$git rm --cached path/to/file
 ```
 
 #### Get a copy of a file discarding changes since last $git add
 
 ```sh
-$git checkout foo
+$git checkout path/to/file
 ```
 
 #### Remove pushed commit from repo 
