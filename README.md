@@ -4,6 +4,8 @@ layout: default
 tags: siteinfo
 ---
 
+# c0hen.github.io
+
 Testing Jekyll and trying to organize my tinkerings.
 
 Highlighting with
