@@ -1,6 +1,7 @@
 ---
 title: README
 layout: default
+tags: siteinfo
 ---
 
 Testing Jekyll and trying to organize my tinkerings.

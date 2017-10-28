@@ -10,12 +10,10 @@
   <body class="centered-wrapper">
   <nav>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/git-handbook">Git handbook</a></li>
-    <li><a href="/about">About</a></li>
-    <li> 
-    {% include dynamic_menu.html %}
+    <li class="dropdown"><a href="/">Home</a>
+    {% include menulist.html %}
     </li>
+    <li><a href="/git-handbook">Git handbook</a></li>
     <!--
     <li><a href="/cv">CV</a></li>
     <li><a href="/blog">Blog</a></li>

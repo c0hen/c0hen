@@ -30,25 +30,25 @@ $git push
 
 [Try and learn it on Github](https://try.github.io/levels/1/challenges/1)
 
- Display commit messages:
+#### Display commit messages
 
 ```sh
 $git log
 ```
 
- Remove a file that recently became untracked in .gitignore from repo:
+#### Remove a file that recently became untracked in .gitignore from repo
 
 ```sh
 $git rm --cached foo
 ```
 
- Get a copy of a file discarding changes since last $git add
+#### Get a copy of a file discarding changes since last $git add
 
 ```sh
 $git checkout foo
 ```
 
- Remove pushed commit from repo 
+#### Remove pushed commit from repo 
 
 Don't do this in public ones, others may be using it already
 
@@ -56,3 +56,14 @@ Don't do this in public ones, others may be using it already
 $git reset --hard 40digit_commit_id
 $git push --force
 ```
+
+#### Checkout a single file from remote
+
+```
+$git fetch
+$git checkout origin/master -- path/to/file
+```
+
+The fetch will download all the recent changes, but it will not put it in your current checked out code (working area).
+
+The checkout will update the working tree with the particular file from the downloaded changes (origin/master).

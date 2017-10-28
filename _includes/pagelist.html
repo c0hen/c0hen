@@ -1,0 +1,12 @@
+{% assign pages = site.pages | sort:"name" %}
+<ul>
+  {% for node in pages %}
+    {% unless node.path == "index.md" or node.path == "404.html" or node.path == "README.md" or node.path == "git-handbook.md" %}
+      <li>
+        <a {% if node.url == page.url %}class="active"{% endif %} href="{{ node.url }}">
+          {{ node.title }}
+        </a>
+      </li>
+    {% endunless %}
+  {% endfor %}
+</ul>

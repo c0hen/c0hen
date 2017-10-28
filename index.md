@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Journal
+title: Pagelist
+tags: siteinfo
 ---
 <div class="blurb">
-  <h2>Stories of my tinkering</h2>
+  <h2>All my tinkerings</h2>
 </div><!-- /.blurb -->
 
-  [Pulseaudio RTP receiver server on Debian Stretch](pulseaudio-rtp-receiver-server)
+{% include pagelist.html %}
 
-  [Udev network device names in Debian Stretch](udev-netnames)
-
+{{ page.path }}

@@ -25,6 +25,24 @@
 
 /* end center anything */
 
+/* on hover show menu items 
+Add class dropdown to parent menu subelement
+Add class dropdown-content to submenu element. */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* end on hover show menu items */
+
 body {
   margin: 30px auto;
   width: 80%;
@@ -58,6 +76,11 @@ h2 {
 h3 {
   font-size: 2em;
   font-family:"Noto Sans", "Liberation Sans", "Arial", sans-serif;
+}
+h4 {
+  font-size: 1.4em;
+  font-family:"Noto Sans", "Liberation Sans", "Arial", sans-serif;
+  font-weight: normal;
 }
 p {
   font-size: 1.4em;
