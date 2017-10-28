@@ -59,7 +59,7 @@ $git push --force
 
 #### Checkout a single file from remote
 
-```
+```sh
 $git fetch
 $git checkout origin/master -- path/to/file
 ```
@@ -67,3 +67,23 @@ $git checkout origin/master -- path/to/file
 The fetch will download all the recent changes, but it will not put it in your current checked out code (working area).
 
 The checkout will update the working tree with the particular file from the downloaded changes (origin/master).
+
+#### Rebase when pulling and before pushing
+
+```
+$git pull --rebase
+```
+
+To automatically rebase before a pull add this to git config:
+
+```
+[pull]
+        rebase = true
+```
+
+Rebasing allows to merge related commits and keep mistakes from littering the project's history.
+
+```sh
+$git rebase -i
+$git push
+```
