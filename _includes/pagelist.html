@@ -1,5 +1,5 @@
-{% assign pages = site.pages | sort:"name" %}
-<ul>
+{% assign pages = site.html_pages | sort:"name" %}
+<ul type="circle">
   {% for node in pages %}
     {% unless node.path == "index.md" or node.path == "404.html" or node.path == "README.md" or node.path == "git-handbook.md" %}
       <li>

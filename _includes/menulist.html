@@ -1,4 +1,4 @@
-{% assign pages = site.pages | sort:"name" %}
+{% assign pages = site.html_pages | sort:"name" %}
 <ul class="dropdown-content">
   {% for node in pages %}
     {% unless node.path == "index.md" or node.path == "404.html" or node.path == "README.md" or node.path == "git-handbook.md" %}
