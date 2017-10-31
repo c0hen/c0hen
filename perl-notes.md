@@ -5,6 +5,13 @@ title: Perl notes
 
 ## Executing system commands synchronously
 
+### Things to remember
+
+1. The backticks capture output.
+2. The system command does not capture output
+3. A successful exec never returns
+4. IPC::System::Simple handles most of the shell and error details for you.
+5. IPC::Run3 allows you to work with input and output at the same time
 
 ### [Fire and forget with system](https://www.effectiveperlprogramming.com/2010/04/when-perl-isnt-enough)
 
@@ -29,6 +36,8 @@ Backticks capture standard output of the command run and perl program execution 
 
 Backticks also trigger the same interpolation that double-quotes do, so you can place variables in the backticks and they will be converted into text before Perl executes the command.
 
+The backtick operator does variable interpolation without regard to the presence of single quotes in the command.
+
 If you use the backticks in scalar context, Perl returns all of the standard output (but not standard error!) as a single, possibly multi-line string. If you use it in list context, then Perl returns a list that has one line per element:
 
 ```pl
@@ -49,7 +58,90 @@ my $output = qx{ls -l};
 my $output = qx(ls -l);
 ```
 
-## [Perl Traps](http://mojolicious.org/perldoc/perltrap)
+### Use IPC::System::Simple to make life easier
+
+Running external commands from within a Perl program is
+easy enough, but you can easily get confused about whether or not those
+commands succeeded or failed. IPC::System::Simple provides its own versions of system that dies when it encounters an error:
+
+```pl
+use IPC::System::Simple qw(system);
+use Try::Tiny;
+
+try {
+	system( 'ls', '-l', $ARGV[0] );
+	}
+catch {
+	print $_;
+	};
+```
+
+When you run this command, you see that IPC::System::Simple figures out the success or failure for you (much like autodie):
+
+```pl
+% perl ipc_system_simple.pl /does/exist
+-rw-rw-r-- 1 buster  staff  555 Jan  1 00:00 /does/exist
+% perl ipc_system_simple.pl /does/not/exist
+ls: /does/not/exist: No such file or directory
+"ls" unexpectedly returned exit value 1 at ipc_system_simple.pl line 5
+```
+
+IPC::System::Simple also has a replacement for backticks, which it calls capture. You could run the ps command to get a list of running processes then look for the line with your program ($0 is the name of the currently running Perl program):
+
+```pl
+use IPC::System::Simple qw(capture);
+
+my @processes = capture( 'ps', 'ux' );
+
+print grep { /$0/o } @processes;
+```
+
+This program just prints the ps line that applies to itself:
+
+```pl
+% perl ipc_system_simple_capture.pl
+buster 74442   0.0  0.1   601344   2876 s000  S+   11:08 AM 0:00.04 perl ipc_system_simple_capture.pl
+```
+
+IPC::System::Simple‘s system and capture commands behave much like Perl’s built-in system command, so they might invoke an underlying shell. If you want to prevent an shell interaction (i.e. don’t interpret metacharacters), you can use the systemx and capturex versions instead. This prevents you from accidently starting a command that does more than you wanted:
+
+```pl
+use IPC::System::Simple qw(systemx);
+systemx("ps ux | rm -rf /");
+```
+
+The systemx thinks its argument a file with the literal characters you specified in the argument, and fails instead of trying to remove all of your files:
+
+```pl
+% perl ipc_system_simple_systemx.pl
+"ps ux | rm -rf /" failed to start: "No such file or directory" at ipc_system_simple_system x.pl line 2
+```
+
+### Use IPC::Run3 to connect filehandles to external processes
+
+Backticks, system, exec, and IPC::System::Simple are all fine ways of running processes in Perl; however, they don’t do a great job in working with output streams. What if you want to write to an external program, or if you want to both read and write to the same external process? In those cases, you want the IPC::Run3 module. This module is the modern successor to the core module IPC::Open3, which though more flexible, is also more complex to use.
+
+IPC::Run3 is best served by an example. In this example you are going to send some input to the sort command and capture the standard input, and standard output.
+
+With IPC::Run3, you can define a scalar variable ($stdin) that represents the input, and the scalar variables where it should put the output ($stdout and $stderr):
+
+```pl
+use IPC::Run3;
+my @command = qw(sort -n);
+
+my $stdin   = "5\n34\n32\n12\nhi\n";
+my ( $stdout, $stderr ) = ( '', '' );
+
+run3 \@command, \$stdin, \$stdout, \$stderr;
+
+die "something went horribly wrong" if $?;
+
+print "STDOUT\n$stdout\nSTDERR\n$stderr\n";
+```
+
+You can even do fancy things like bypass writing to a scalar and directly write to a file.
+
+## [Perl traps](http://mojolicious.org/perldoc/perltrap)
 
 Practicing Perl Programmers should take note of the following:
 
@@ -84,17 +176,7 @@ $x =~ /foo/;
 
 As always, if any of these are ever officially declared as bugs, they'll be fixed and removed.
 
-### Shell Traps
-
-Sharp shell programmers should take note of the following:
-
-* The backtick operator does variable interpolation without regard to the presence of single quotes in the command.
-
-* The backtick operator does no translation of the return value, unlike csh.
-
-* Shells (especially csh) do several levels of substitution on each command line. Perl does substitution in only certain constructs such as double quotes, backticks, angle brackets, and search patterns.
-
-* Shells interpret scripts a little bit at a time. Perl compiles the entire program before executing it (except for BEGIN blocks, which execute at compile time).
+### Shell traps
 
 * The arguments are available via @ARGV, not $1, $2, etc.
 

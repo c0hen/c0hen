@@ -36,6 +36,12 @@ $git push
 $git log
 ```
 
+#### Show diff of a file already added to be commited
+
+```sh
+$git diff --cached path/to/file
+```
+
 #### Remove a file that recently became untracked in .gitignore from repo
 
 ```sh
