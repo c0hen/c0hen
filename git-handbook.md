@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Git handbook
+tags: git beginner tips
 ---
 
 Thoroughly assemble your .gitignore - files excluded from the remote repository.

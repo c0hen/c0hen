@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Perl notes
+tags: perl beginner tips programming system
 ---
 
 ## Executing system commands synchronously

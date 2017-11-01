@@ -1,7 +1,7 @@
 ---
 title: Blender begins
 layout: default
-published: false
+tags: blender 3d cad video tips
 ---
 Right click to select, left to confirm.
 

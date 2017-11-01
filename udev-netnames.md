@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Udev network device names
+tags: udev network debian
 ---
 
 Udev network device names by default change to BIOS/UEFI location based names in Debian Stretch.

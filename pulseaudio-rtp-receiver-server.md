@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pulseaudio RTP receiver server
+tags: pulseaudio rtp systemd audio server
 ---
 
 ## Based on Debian Stretch 9.2 20171016
