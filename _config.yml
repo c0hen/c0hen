@@ -7,6 +7,8 @@ permalink: /:slug/
 favorite_color: blue
 #theme: jekyll-theme-minimal
 highlighter: rouge
+plugins:
+  - jekyll-seo-tag
 kramdown:
   # parse_block_html: true
   auto_ids:       true
