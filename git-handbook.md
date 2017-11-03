@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Git handbook
+description: Git handbook for a begginner, by a git beginner.
 tags: git beginner tips
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Perl notes
+description: Some caveats in Perl system scripting.
 tags: perl beginner tips programming system
 ---
 

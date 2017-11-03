@@ -1,6 +1,7 @@
 ---
 title: Blender begins
 layout: default
+description: Short primer on how to create a thing in blender and get some sort of visible output.
 tags: blender 3d cad video tips
 ---
 Right click to select, left to confirm.

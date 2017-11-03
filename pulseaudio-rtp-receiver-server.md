@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pulseaudio RTP receiver server
+description: Configure a headless Pulseaudio server that accepts connections via RTP.
 tags: pulseaudio rtp systemd audio server
 ---
 

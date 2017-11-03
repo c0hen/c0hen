@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Udev network device names
+description: Create custom, static, machine independent network device names to simplify firewalling and scripting.
 tags: udev network debian
 ---
 

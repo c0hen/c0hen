@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+description: Rule #1: cardio.
 tags: siteinfo
 ---
 
