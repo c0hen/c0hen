@@ -5,9 +5,11 @@ description: Git handbook for a begginner, by a git beginner.
 tags: git beginner tips
 ---
 
+* Table of contents
+{:toc}
+
 Thoroughly assemble your .gitignore - files excluded from the remote repository.
-SSH keys can be used to access Github
-<https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
+SSH keys can be used to access Github <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
 
 **Try to use small changes/commits and concise messages.**
 
@@ -48,6 +50,14 @@ $git diff --cached path/to/file
 
 ```sh
 $git rm --cached path/to/file
+```
+
+#### Move mistakenly commited file back to staging area, don't remove local file
+
+```sh
+git reset --soft HEAD^
+git reset HEAD path/to/unwanted_file
+git commit -c ORIG_HEAD
 ```
 
 #### Get a copy of a file discarding changes since last $git add
@@ -94,4 +104,50 @@ Rebasing allows to merge related commits and keep mistakes from littering the pr
 ```sh
 $git rebase -i
 $git push
+```
+
+### Branches
+
+#### Create a branch (still on master) and switch to it (on new branch).
+
+```sh
+$git branch social
+$git checkout social
+```
+
+#### Create a branch and switch to it
+
+```sh
+$git checkout -b social
+```
+
+#### List remote branches
+
+```sh
+git branch -r
+```
+
+#### Fetch all branches from remote called origin
+
+```sh
+git fetch origin
+```
+
+#### Pull all tracked branches
+
+```sh
+git pull --all
+```
+
+#### Find upstream of all branches:
+
+```sh
+while read branch; do
+  upstream=$(git rev-parse --abbrev-ref $branch@{upstream} 2>/dev/null)
+  if [[ $? == 0 ]]; then
+    echo $branch tracks $upstream
+  else
+    echo $branch has no upstream configured
+  fi
+done < <(git for-each-ref --format='%(refname:short)' refs/heads/*)
 ```
