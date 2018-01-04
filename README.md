@@ -8,6 +8,18 @@ tags: siteinfo
 
 Testing Jekyll and trying to organize my tinkerings.
 
+Installing gems via bundler:
+
+```
+bundle install
+```
+
+Serve the site locally:
+
+```
+bundle exec jekyll serve
+```
+
 Highlighting with
 Rouge 
 https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers
