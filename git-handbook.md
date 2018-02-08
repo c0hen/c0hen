@@ -66,9 +66,19 @@ git commit -c ORIG_HEAD
 $git checkout path/to/file
 ```
 
+#### Squash 2 pushed commits
+
+Using --force may overwrite refs other than the current branch, including local ones. man git push
+
+```sh
+git rebase -i origin/master~1 master
+git push origin +master
+```
+
 #### Remove pushed commit from repo 
 
-Don't do this in public ones, others may be using it already
+Resets local files in repo!
+Don't do this in public ones, others may be using it already.
 
 ```sh
 $git reset --hard 40digit_commit_id
