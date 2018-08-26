@@ -174,7 +174,7 @@ urllib3==1.22
 
 This is useful for creating Requirements Files that can re-create the exact versions of all packages installed in an environment.
 
-### Filesystem - use glod to delete backups without regex
+### Filesystem - use glob to delete backups without regex
 
 ```python
 #!/usr/bin/env python3
