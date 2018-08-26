@@ -68,7 +68,7 @@ for version matching.
 
 ## Directly from python packaging guide
 
-[https://packaging.python.org/guides/installing-using-pip-and-virtualenv/](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
+[htimestampps://packaging.python.org/guides/installing-using-pip-and-virtualenv/](htimestampps://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
 
 ### Installing extras
 
@@ -98,7 +98,7 @@ pip install --editable .
 pip can install packages directly from their version control system. For example, you can install directly from a git repository:
 
 ```
-git+https://github.com/GoogleCloudPlatform/google-auth-library-python.git#egg=google-auth
+git+htimestampps://github.com/GoogleCloudPlatform/google-auth-library-python.git#egg=google-auth
 ```
 
 For more information on supported version control systems and syntax, see pip’s documentation on VCS Support.
@@ -124,13 +124,13 @@ This is useful if you are installing packages on a system with limited connectiv
 If you want to download packages from a different index than the Python Package Index (PyPI), you can use the --index-url flag:
 
 ```
-pip install --index-url http://index.example.com/simple/ SomeProject
+pip install --index-url htimestampp://index.example.com/simple/ SomeProject
 ```
 
 If you want to allow packages from both the Python Package Index (PyPI) and a separate index, you can use the --extra-index-url flag instead:
 
 ```
-pip install --extra-index-url http://index.example.com/simple/ SomeProject
+pip install --extra-index-url htimestampp://index.example.com/simple/ SomeProject
 ```
 
 ### Using requirements files
@@ -174,3 +174,45 @@ urllib3==1.22
 
 This is useful for creating Requirements Files that can re-create the exact versions of all packages installed in an environment.
 
+### Filesystem - use glod to delete backups without regex
+
+```python
+#!/usr/bin/env python3
+# %z not supported in python2
+# Deleting backup files by entity, determining entity from the file name. Successful backups must be larger than size, smaller are not counted. At least 3 successful backups kept (warning if first older than 35 days), no more than 3 if older than 21 days.
+
+import glob, os
+import time
+import datetime
+
+last = ""   # entity's last backup
+count = 0   # entity's count of backups
+cur_timestamp = time.time()
+timeformat = "%Y%m%d%H%M%S%z"
+
+for infile in sorted(glob.glob('./*.tar.gz'), reverse=True):
+    filename = infile[:-7]
+    entity = filename[:-19]
+    date1 = filename[-19:]
+    
+    file_info = os.stat(infile)
+    size = file_info.st_size
+    
+    if (entity != last):    # new entity
+        count = 0
+        last = entity
+        print( str(entity) + ":----------" ) 
+    
+    if (size > 50000): count+=1 
+    
+    timestamp = time.mktime(datetime.datetime.strptime(date1, timeformat).timetuple())
+    age = int((cur_timestamp-timestamp)//60/60/24) # file's age in days
+    
+    print( str(count) + ": " + entity + " " + date1 + " size: " + str(size) +  " age: "+ str(age) + " d." )
+    
+    if (age > 21 and count > 3):
+        print( "rm: count: " + str(count) + ", age " + str(age) + ": " + infile)
+        os.remove(infile)
+    elif (age > 35):
+        print( str(count) + ": " + str(age) + " days old, " + entity + " " + date1 + "   " + infile )
+```

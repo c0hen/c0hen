@@ -161,3 +161,10 @@ while read branch; do
   fi
 done < <(git for-each-ref --format='%(refname:short)' refs/heads/*)
 ```
+
+#### Remove a manually deleted file from tree
+
+```sh
+$git ls-files --deleted -z | xargs -0 git rm
+```
+
