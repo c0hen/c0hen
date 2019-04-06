@@ -5,10 +5,15 @@ description: Useful command examples and scripts to modify to your liking.
 tags: command shell script
 ---
 
+**Some here are scripts, those begin with a shebang**
+```sh
+#!
+```
+
 * Table of contents
 {:toc}
 
-#### ncdu equivalent:
+#### ncdu equivalent
 
 For when [ncdu](https://dev.yorhel.nl/ncdu) is not installed.
 ```sh
@@ -19,9 +24,9 @@ du -d1 -h | sort -h
 
 Using [mpv](https://mpv.io/), my preferred video player.
 
-Create a shell script with below contents, pass arguments:
+To use as is, create a shell script with below contents, arguments:
 
-1st argument - how long ago was the video file changed.
+1st argument - how long ago was the video file last changed.
 
 The rest of the arguments: path(s) to look for videos (glob, like 
 ```sh
@@ -44,13 +49,30 @@ if [ -z "$1" -o -z "$2" ]; then
   exit 1
 else
   wget --continue --recursive --execute robots=off --wait 1 --directory-prefix="$2" "$1"
+  # Below line for offline mirroring, test on each site.
+  # wget  --mirror --convert-links --adjust-extension --page-requisites --no-parent --continue --recursive --execute robots=off --wait 1 --directory-prefix="$2" "$1"
   exit 0
 fi
 ```
 
-#### Resize pictures
+#### ImageMagick
 Requires [ImageMagick](https://www.imagemagick.org/)
+
 Resize .jpg pictures in current directory level to roughly 1500x2000 pixels in size.
 ```sh
 mogrify -resize 1500x2000 *.{jpg,JPG}
+```
+
+Create a black background in required size (for example, to use in a video).
+```sh
+convert -size 1920x1080 xc:black bg.png
+```
+
+#### [FFMpeg](https://ffmpeg.org/)
+
+Dump audio using [parallel](https://www.gnu.org/software/parallel/). Parallel uses 1 thread for each core by default.
+
+Make sure to change audio format according to source.
+```sh
+parallel ffmpeg -i '{}' -map 0:1 -c:a copy '{.}.m4a' ::: /media/video/source_video_file.mkv
 ```
