@@ -13,7 +13,7 @@ tags: kvm qemu virsh
 Graphical manager - virt-manager
 
 [//]: # (TODO: network.
-bring up bridge manually ?? missing, no interface
+bring up bridge manually ?? missing interface
 ```sh
 ip link set up dev br0
 ip route add default via 192.168.1.1 dev br0 onlink
@@ -96,7 +96,7 @@ virsh setmem vm_name memsize --config
 
 ### For online configuration
 
-You can set the vCPU and memory while the VM is running with --current instead of --config, but the new numbers have to be within the maximum values already set. You can not set these maximum numbers while the VM is running. You will have to shutdown the VM.
+You can set the vCPU and memory while the VM is running with \-\-current instead of \-\-config, but the new numbers have to be within the maximum values already set. You can not set these maximum numbers while the VM is running. You will have to shutdown the VM.
 ```sh
 virsh shutdown vm_name
 ```
@@ -113,8 +113,9 @@ Menu driven CLI utility
 
 ### virsh
 
-Use --location to use --extra-args or
-use --cdrom=/home/isos/debian9.iso
+Use \-\-location to use \-\-extra-args or
+
+use \-\-cdrom=/home/isos/debian9.iso
 
 ```sh
 # virt-install \
@@ -159,7 +160,7 @@ and reboot the VM.
 Default console speed is 9600 baud
 
 
-[Minicom](https://salsa.debian.org/minicom-team/minicom) is also an easy to use serial communication program.
+[Minicom](https://salsa.debian.org/minicom-team/minicom) is an easy to use serial communication program.
 
 ```sh
 minicom -D /dev/ttyS0
