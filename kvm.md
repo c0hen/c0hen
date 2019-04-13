@@ -12,7 +12,54 @@ tags: kvm qemu virsh
 
 Graphical manager - virt-manager
 
-[//]: # (TODO: bridge adapter, network)
+[//]: # (TODO: network.
+bring up bridge manually ?? missing, no interface
+```sh
+ip link set up dev br0
+ip route add default via 192.168.1.1 dev br0 onlink
+```
+
+or)
+
+## KVM bridged with physical machines
+
+The most common configuration. Edit host's /etc/network/interfaces
+
+```sh
+#set up a bridge and give it a static ip
+allow-hotplug br0
+iface br0 inet static
+        address 192.168.1.2
+        netmask 255.255.255.0
+        network 192.168.1.0
+        broadcast 192.168.1.255
+        gateway 192.168.1.1
+        bridge_ports eth0
+        bridge_stp off
+        bridge_fd 0
+        bridge_maxwait 0
+        nameserver 8.8.8.8
+        #post-up /etc/network/if-up.d/tcbr0.sh
+```
+and bring it up using ifup, in which case:
+
+check that gateway is not mentioned twice in /etc/network/interfaces
+
+careful, may need to flush host IP, routes, etc to bring up the bridge with ifup on debian.
+
+```sh
+ip addr flush dev eth0
+ifup br0
+```
+
+Contents of my traffic shaping script tr_br0.sh, commented out in the above example interfaces file. Make sure to make it executable if planning to use it.
+Using Fair Queueing Controlled Delay. Some reasoning behind this from the [Arch Linux wiki.](https://wiki.archlinux.org/index.php/advanced_traffic_control)
+```sh
+#!/bin/sh
+#tc qdisc del root dev br0
+#tc qdisc show dev br0
+/sbin/tc qdisc add dev br0 root fq_codel
+```
 
 ## virsh (debian package libvirt-clients)
 
@@ -80,7 +127,7 @@ use --cdrom=/home/isos/debian9.iso
 --disk path=/var/lib/libvirt/images/debian9.img,bus=virtio,size=10 \
 --graphics none \
 --location http://httpredir.debian.org/debian/dists/stretch/main/installer-amd64/ \
---network bridge:br0 \
+--network bridge=br0 \
 --console pty,target_type=serial \
 --extra-args 'console=ttyS0,115200n8 serial'
 ```
