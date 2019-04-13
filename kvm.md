@@ -19,7 +19,26 @@ ip link set up dev br0
 ip route add default via 192.168.1.1 dev br0 onlink
 ```
 
-or)
+or
+
+TODO:
+virt-install --connect=qemu:///system \
+	--name "$1" \
+	--description "KVM $1" \
+	--os-type=linux \
+	--os-variant=debian9 \
+	--ram=4096 \
+	--vcpus=4 \
+	--graphics none \
+	--location http://httpredir.debian.org/debian/dists/stretch/main/installer-amd64/ \
+	--network bridge=br0 \
+	--initrd-inject=/home/diabloid/virt/preseed.cfg \
+	--extra-args 'auto' \
+	--disk=pool=virt,size=20,format=qcow2,cluster_size=2M,preallocation=metadata,bus=virtio
+#	--extra-args 'console=ttyS0,115200n8 serial'
+### The name preseed.cfg is mandatory for debian installer d-i to pick it up
+
+)
 
 ## KVM bridged with physical machines
 
@@ -113,9 +132,20 @@ Menu driven CLI utility
 
 ### virsh
 
-Use \-\-location to use \-\-extra-args or
+Use 
+```sh
+--location
+```
+to use 
+```sh
+--extra-args
+```
+or
 
-use \-\-cdrom=/home/isos/debian9.iso
+use 
+```sh
+--cdrom=/home/isos/debian9.iso
+```
 
 ```sh
 # virt-install \
@@ -131,6 +161,11 @@ use \-\-cdrom=/home/isos/debian9.iso
 --network bridge=br0 \
 --console pty,target_type=serial \
 --extra-args 'console=ttyS0,115200n8 serial'
+```
+
+### Clone a VM
+```sh
+virt-clone --connect=qemu://example.com/system -o vm_old_source -n vm_new_dest --auto-clone
 ```
 
 ## Connect to VM Console without network or X
@@ -165,3 +200,11 @@ Default console speed is 9600 baud
 ```sh
 minicom -D /dev/ttyS0
 ```
+
+## Info
+
+### Virtual disk info
+```sh
+qemu-img info /var/lib/libvirt/images/disk.img
+```
+
