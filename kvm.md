@@ -14,7 +14,25 @@ Graphical manager - virt-manager
 
 ## KVM bridged with physical machines
 
+Add permanent packet forwarding to kernel conf
+```sh
+echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.d/99-sysctl.conf
+sysctl -p /etc/sysctl.d/99-sysctl.conf
+```
+
 Add a bridge manually with brctl (bridge-utils in debian).
+```sh
+brctl addbr br0
+brctl stp br0 off
+# forward delay
+brctl setfd br0 0
+# lower value = higher priority
+brctl setbridgeprio br0 0
+```
+Need to add vnet0 to bridge_ports after startup of VM to reach VM
+```sh
+brtcl addif br0 vnet0
+```
 
 Permanent: edit host's /etc/network/interfaces
 
@@ -28,10 +46,11 @@ iface br0 inet static
         broadcast 192.168.1.255
         gateway 192.168.1.1
         bridge_ports eth0
-# need to add vnet0 to bridge_ports after creation of VM to reach VM
-#        vnet0
+# need to add vnet0 to bridge_ports after startup of VM to reach VM
+# brtcl addif br0 vnet0
         bridge_stp off
         bridge_fd 0
+# bridge_maxwait only? needed for networking.service
         bridge_maxwait 0
         nameserver 8.8.8.8
         #post-up /etc/network/if-up.d/tc_br0.sh
