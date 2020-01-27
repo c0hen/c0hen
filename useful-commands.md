@@ -20,6 +20,23 @@ For when [ncdu](https://dev.yorhel.nl/ncdu) is not installed.
 du -d1 -h | sort -h
 ```
 
+#### Faster alternatives written in Rust
+
+fd - alternative to find.
+debian package name fd-find, executable name on debian is
+```sh
+fdfind
+```
+ripgrep - alternative to grep.
+debian package name ripgrep.
+```sh
+rg
+```
+
+#### pass
+
+Unix style password management script, encrypts with gpg.
+
 #### find and play videos flexibly
 
 Using [mpv](https://mpv.io/), my preferred video player.

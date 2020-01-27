@@ -374,7 +374,7 @@ d-i clock-setup/utc boolean true
 
 # You may set this to any valid setting for $TZ; see the contents of
 # /usr/share/zoneinfo/ for valid values.
-d-i time/zone string EU/Tallinn
+d-i time/zone string Europe/Tallinn
 
 # Controls whether to use NTP to set the clock during the install
 d-i clock-setup/ntp boolean true
@@ -428,7 +428,7 @@ d-i partman-auto-lvm/new_vg_name string site_vg
 
 d-i partman-auto/expert_recipe string                         \
       boot-root ::                                            \
-              512 512 512 ext4                                 \
+              512 1000000000 512 ext4                                 \
                       $primary{ }                             \
                       $bootable{ }                            \
                       method{ format } format{ }              \
