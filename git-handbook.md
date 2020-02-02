@@ -168,3 +168,75 @@ done < <(git for-each-ref --format='%(refname:short)' refs/heads/*)
 $git ls-files --deleted -z | xargs -0 git rm
 ```
 
+### Working with remote repositories
+
+#### Check remote repository before fetching it
+
+```sh
+git ls-remote remotename
+```
+
+#### Add git remote with SSH URL
+
+Add an existing git remote, check that it was added by listing remotes.
+```sh
+git remote add remotename gituser@secondary.server:/path/to/myrepo.git 
+git remote -v
+```
+
+#### Add git remote with SSH specified key login
+
+Can be set per repository. See man git-config
+
+```sh
+cd myrepo.git
+git config core.sshCommand "ssh -i ~/.ssh/id_git -F /dev/null"
+```
+
+#### Multiple remotes with multiple ssh keys in one repository - external transport example
+
+Create a bare remote git repository and set up access via ssh, with a per-repo key.
+Add write permissions by group for accountable sharing.
+
+On the remote:
+```sh
+aptitude install git
+adduser gituser
+addgroup gitgroup
+su gituser
+cd
+git --bare --shared=group init myrepo.git
+chgrp gitgroup myrepo.git
+```
+
+On the machine you have your current latest repo and plan to push from:
+```sh
+cd myrepo.git
+```
+Allow external protocol, ssh transport with separate key.
+Only from user initiated commands, not from git initiated automated commands.
+See man git-config, one SSH key is simpler and allows avoiding configuring
+the external ssh transport.
+```sh
+git config protocol.allow.ext user
+```
+Copy your ssh key to the secondary server, test login.
+```sh
+ssh-copy-id -i ~/.ssh/id_secondary gituser@secondary.server 
+ssh gituser@secondary.server
+exit
+```
+Add the remote with the short name "secondary" and ssh URL
+```sh
+git remote add secondary 'ext::ssh -i ~/.ssh/id_secondary gituser@secondary.server %S /home/gituser/myrepo.git'
+```
+List remotes
+```sh
+git remote -v
+```
+Push your up to date local repo to the remote secondary repo
+```sh
+git push secondary
+```
+For further git configuration to allow remote checking via external transport etc, see man git-config.
+
