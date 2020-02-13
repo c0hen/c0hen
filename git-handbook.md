@@ -9,11 +9,21 @@ tags: git beginner tips
 {:toc}
 
 Thoroughly assemble your .gitignore - files excluded from the remote repository.
-SSH keys can be used to access Github <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
+SSH keys can be used to access [Github]<https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
 
 **Try to use small changes/commits and concise messages.**
 
-### Basic flow:
+HEAD and branches, including master, can be pictured as labels on an object. Git commands make more sense when looking at git from the inside.
+A good talk on git internals by [Michael Schwern at Linux.conf.au 2013]<https://www.youtube.com/watch?v=eQFZ_MPTVpc/>.
+
+### Start or get a repository
+
+```sh
+$git init myrepo.git
+$git clone https://github.com/c0hen/c0hen.github.io
+```
+
+### Very basic flow with remote:
 
 ```sh
 $git pull
@@ -32,12 +42,23 @@ $git status
 $git push
 ```
 
+```sh
+$git checkout thing maybe_more_things
+```
+means "switch to", "make active in current context", for example get a file from the status of a commit Bravo and put it into the git directory as it was at the time of commit Bravo.
+
 [Try and learn it on Github](https://try.github.io/levels/1/challenges/1)
 
 #### Display commit messages
 
 ```sh
 $git log
+```
+
+#### Visual representation of the repository with messages, show a graph
+
+```sh
+$git log --graph --decorate --all
 ```
 
 #### Show diff of a file already added to be commited
@@ -55,9 +76,9 @@ $git rm --cached path/to/file
 #### Move mistakenly commited file back to staging area, don't remove local file
 
 ```sh
-git reset --soft HEAD^
-git reset HEAD path/to/unwanted_file
-git commit -c ORIG_HEAD
+$git reset --soft HEAD^
+$git reset HEAD path/to/unwanted_file
+$git commit -c ORIG_HEAD
 ```
 
 #### Get a copy of a file discarding changes since last $git add
@@ -71,14 +92,14 @@ $git checkout path/to/file
 Using --force may overwrite refs other than the current branch, including local ones. man git push
 
 ```sh
-git rebase -i origin/master~1 master
-git push origin +master
+$git rebase -i origin/master~1 master
+$git push origin +master
 ```
 
 #### Remove pushed commit from repo 
 
-Resets local files in repo!
-Don't do this in public ones, others may be using it already.
+Resets local files in repo. --hard means check out the change in addition to reset.
+Don't do this in public ones! Others may be using it already.
 
 ```sh
 $git reset --hard 40digit_commit_id
@@ -102,6 +123,13 @@ The checkout will update the working tree with the particular file from the down
 $git pull --rebase
 ```
 
+Take care to understand each rebase.
+Rebasing allows to merge related commits and keep mistakes from littering the project's history.
+
+```sh
+$git rebase -i
+$git push
+```
 To automatically rebase before a pull add this to git config:
 
 ```
@@ -109,20 +137,29 @@ To automatically rebase before a pull add this to git config:
         rebase = true
 ```
 
-Rebasing allows to merge related commits and keep mistakes from littering the project's history.
-
-```sh
-$git rebase -i
-$git push
-```
-
 ### Branches
+
+### New feature testing workflow
 
 #### Create a branch (still on master) and switch to it (on new branch).
 
 ```sh
 $git branch social
 $git checkout social
+```
+
+#### Merge changes from the master branch and run tests
+
+```sh
+$git merge master
+```
+Run your tests. Fix as necessary and retest until code ok. Add and commit as needed.
+
+#### Commit branch to master
+
+```sh
+$git checkout master
+$git merge social
 ```
 
 #### Create a branch and switch to it
@@ -134,19 +171,19 @@ $git checkout -b social
 #### List remote branches
 
 ```sh
-git branch -r
+$git branch -r
 ```
 
 #### Fetch all branches from remote called origin
 
 ```sh
-git fetch origin
+$git fetch origin
 ```
 
 #### Pull all tracked branches
 
 ```sh
-git pull --all
+$git pull --all
 ```
 
 #### Find upstream of all branches:
@@ -173,15 +210,15 @@ $git ls-files --deleted -z | xargs -0 git rm
 #### Check remote repository before fetching it
 
 ```sh
-git ls-remote remotename
+$git ls-remote remotename
 ```
 
 #### Add git remote with SSH URL
 
 Add an existing git remote, check that it was added by listing remotes.
 ```sh
-git remote add remotename gituser@secondary.server:/path/to/myrepo.git 
-git remote -v
+$git remote add remotename gituser@secondary.server:/path/to/myrepo.git 
+$git remote -v
 ```
 
 #### Add git remote with SSH specified key login
@@ -189,8 +226,8 @@ git remote -v
 Can be set per repository. See man git-config
 
 ```sh
-cd myrepo.git
-git config core.sshCommand "ssh -i ~/.ssh/id_git -F /dev/null"
+$cd myrepo.git
+$git config core.sshCommand "ssh -i ~/.ssh/id_git -F /dev/null"
 ```
 
 #### Multiple remotes with multiple ssh keys in one repository - external transport example
@@ -200,43 +237,43 @@ Add write permissions by group for accountable sharing.
 
 On the remote:
 ```sh
-aptitude install git
-adduser gituser
-addgroup gitgroup
-su gituser
-cd
-git --bare --shared=group init myrepo.git
-chgrp gitgroup myrepo.git
+$aptitude install git
+$adduser gituser
+$addgroup gitgroup
+$su gituser
+$cd
+$git --bare --shared=group init myrepo.git
+$chgrp gitgroup myrepo.git
 ```
 
 On the machine you have your current latest repo and plan to push from:
 ```sh
-cd myrepo.git
+$cd myrepo.git
 ```
 Allow external protocol, ssh transport with separate key.
 Only from user initiated commands, not from git initiated automated commands.
 See man git-config, one SSH key is simpler and allows avoiding configuring
 the external ssh transport.
 ```sh
-git config protocol.allow.ext user
+$git config protocol.allow.ext user
 ```
 Copy your ssh key to the secondary server, test login.
 ```sh
-ssh-copy-id -i ~/.ssh/id_secondary gituser@secondary.server 
-ssh gituser@secondary.server
-exit
+$ssh-copy-id -i ~/.ssh/id_secondary gituser@secondary.server 
+$ssh gituser@secondary.server
+$exit
 ```
 Add the remote with the short name "secondary" and ssh URL
 ```sh
-git remote add secondary 'ext::ssh -i ~/.ssh/id_secondary gituser@secondary.server %S /home/gituser/myrepo.git'
+$git remote add secondary 'ext::ssh -i ~/.ssh/id_secondary gituser@secondary.server %S /home/gituser/myrepo.git'
 ```
 List remotes
 ```sh
-git remote -v
+$git remote -v
 ```
 Push your up to date local repo to the remote secondary repo
 ```sh
-git push secondary
+$git push secondary
 ```
 For further git configuration to allow remote checking via external transport etc, see man git-config.
 
