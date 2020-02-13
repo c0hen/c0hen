@@ -9,12 +9,18 @@ tags: git beginner tips
 {:toc}
 
 Thoroughly assemble your .gitignore - files excluded from the remote repository.
-SSH keys can be used to access [Github]<https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/>
+SSH keys can be used to access [Github](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
 **Try to use small changes/commits and concise messages.**
 
 HEAD and branches, including master, can be pictured as labels on an object. Git commands make more sense when looking at git from the inside.
-A good talk on git internals by [Michael Schwern at Linux.conf.au 2013]<https://www.youtube.com/watch?v=eQFZ_MPTVpc/>.
+A good talk on git internals by [Michael Schwern at Linux.conf.au 2013](https://www.youtube.com/watch?v=eQFZ_MPTVpc).
+
+### Terms
+
+master - the first branch created by default with git init, not special
+HEAD - the pointer to the branch you're currently on (have checked out)
+commit - an ID consisting of a SHA-1 checksum of all information of the commit. Immutable constant - repo breaks if this is changed. Git does not change history.
 
 ### Start or get a repository
 
@@ -24,6 +30,8 @@ $git clone https://github.com/c0hen/c0hen.github.io
 ```
 
 ### Very basic flow with remote:
+
+git pull is git fetch && git merge
 
 ```sh
 $git pull
