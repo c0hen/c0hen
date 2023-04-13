@@ -2,8 +2,7 @@
 layout: default
 title: Iptables
 description: Iptables cheatsheet
-tags: $IPT tips system
-published: no
+tags: iptables tips system
 ---
 
 ## Fully flush iptables
