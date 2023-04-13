@@ -32,11 +32,10 @@ Here, I'll paste from the kill(2) man page on my Linux box.
 
     If pid equals -1, then sig is sent to every process for which the calling process has permission to send signals, except for process 1 (init), ...
 
-    See that? Killing "pid -1" is equivalent to massacring every other process you are permitted to signal. If you're root, that's probably everything. You live and init lives, but that's it. Everything else is gone gone gone.
+See that? Killing "pid -1" is equivalent to massacring every other process you are permitted to signal. If you're root, that's probably everything. You live and init lives, but that's it. Everything else is gone gone gone.
 
-    Do you have code which manages processes? Have you ever found a machine totally dead except for the text console getty/login (which are respawned by init, naturally) and the process manager? Did you blame the oomkiller in the kernel?
+Do you have code which manages processes? Have you ever found a machine totally dead except for the text console getty/login (which are respawned by init, naturally) and the process manager? Did you blame the oomkiller in the kernel?
 
-    It might not be the guilty party here. Go see if you killed -1.
+It might not be the guilty party here. Go see if you killed -1.
 
-    Unix: just enough potholes and bear traps to keep an entire valley going.
-
+Unix: just enough potholes and bear traps to keep an entire valley going.
