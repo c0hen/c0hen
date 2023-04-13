@@ -30,7 +30,7 @@ Do you know what happens when pid is -1? You really should. It's Important. Yes,
 
 Here, I'll paste from the kill(2) man page on my Linux box.
 
-    If pid equals -1, then sig is sent to every process for which the calling process has permission to send signals, except for process 1 (init), ... 
+    If pid equals -1, then sig is sent to every process for which the calling process has permission to send signals, except for process 1 (init), ...
 
     See that? Killing "pid -1" is equivalent to massacring every other process you are permitted to signal. If you're root, that's probably everything. You live and init lives, but that's it. Everything else is gone gone gone.
 

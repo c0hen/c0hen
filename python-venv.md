@@ -68,7 +68,7 @@ for version matching.
 
 ## Directly from python packaging guide
 
-[htimestampps://packaging.python.org/guides/installing-using-pip-and-virtualenv/](htimestampps://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
+[https://packaging.python.org/guides/installing-using-pip-and-virtualenv/](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
 
 ### Installing extras
 
@@ -98,7 +98,7 @@ pip install --editable .
 pip can install packages directly from their version control system. For example, you can install directly from a git repository:
 
 ```
-git+htimestampps://github.com/GoogleCloudPlatform/google-auth-library-python.git#egg=google-auth
+git+https://github.com/GoogleCloudPlatform/google-auth-library-python.git#egg=google-auth
 ```
 
 For more information on supported version control systems and syntax, see pip’s documentation on VCS Support.
@@ -124,13 +124,13 @@ This is useful if you are installing packages on a system with limited connectiv
 If you want to download packages from a different index than the Python Package Index (PyPI), you can use the --index-url flag:
 
 ```
-pip install --index-url htimestampp://index.example.com/simple/ SomeProject
+pip install --index-url http://index.example.com/simple/ SomeProject
 ```
 
 If you want to allow packages from both the Python Package Index (PyPI) and a separate index, you can use the --extra-index-url flag instead:
 
 ```
-pip install --extra-index-url htimestampp://index.example.com/simple/ SomeProject
+pip install --extra-index-url http://index.example.com/simple/ SomeProject
 ```
 
 ### Using requirements files
