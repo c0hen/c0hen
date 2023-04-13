@@ -7,7 +7,6 @@ tags: puppet modules coding
 ## List of modules useful for a puppet cluster
 
 1. r10k
-1. gcp
 1. puppet-puppetboard
 1. puppetlabs-puppet_operational_dashboards
 1. puppet-telegraf
