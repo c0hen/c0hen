@@ -24,17 +24,12 @@ tags: puppet modules coding
 1. jsok-vault
 1. puppet-systemd
 1. puppet-archive
-1. adullact-wordpress
-1. puppetlabs-mysql
-1. puppet-php
 1. google-gcompute
 1. google-gauth
 1. puppetlabs-firewall
-1. puppetlabs-postgresql
 1. puppetlabs-stdlib
 1. puppetlabs-inifile
 1. puppetlabs-concat
-1. puppet-nginx
 1. saz-locales
 1. saz-sudo
 1. saz-timezone
