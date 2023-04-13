@@ -146,6 +146,12 @@ To automatically rebase before a pull add this to git config:
         rebase = true
 ```
 
+#### Remove a manually deleted file from tree
+
+```sh
+$git ls-files --deleted -z | xargs -0 git rm
+```
+
 ### Branches
 
 ### New feature testing workflow
@@ -208,10 +214,10 @@ while read branch; do
 done < <(git for-each-ref --format='%(refname:short)' refs/heads/*)
 ```
 
-#### Remove a manually deleted file from tree
+#### Delete a remote branch
 
 ```sh
-$git ls-files --deleted -z | xargs -0 git rm
+$git push --delete origin my_branch
 ```
 
 ### Working with remote repositories
