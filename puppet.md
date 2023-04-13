@@ -1,9 +1,16 @@
 ---
 layout: default
 title: Puppet
-description: List of modules useful for a puppet cluster
+description: Useful for a puppet cluster
 tags: puppet modules coding
 ---
+
+## Best practices
+
+1. Separate configs to [hiera](https://www.puppet.com/docs/puppet/7/hiera.html)
+
+1. Store secrets externally, for example in [vault](https://www.vaultproject.io)
+
 ## List of modules useful for a puppet cluster
 
 1. r10k
