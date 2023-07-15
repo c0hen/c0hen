@@ -39,6 +39,14 @@ Creation of the virtual environment:
 $python3 -m virtualenv django-venv
 ```
 
+*Getting an error like*
+
+```
+ImportError: cannot import name 'Popen' from partially initialized module 'subprocess' (most likely due to a circular import)
+```
+
+*could mean you have a file named subprocess.py in the directory you're in. Any python module names being used as a file name will probably trigger this. It'll make python try to override its module and find the "module" in your file is not a module.*
+
 Create and end the session you'll be installing your app in:
 
 ```
