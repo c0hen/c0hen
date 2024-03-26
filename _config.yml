@@ -6,11 +6,6 @@ markdown: kramdown
 permalink: /:slug/
 favorite_color: blue
 #theme: jekyll-theme-minimal
-#analytics:
-#  provider: "google-gtag"
-#  google:
-#    measurement_id: "G-0NR93PW0W5"
-#    anonymize_ip:   false # true, false (default)
 highlighter: rouge
 plugins:
   - jekyll-seo-tag
