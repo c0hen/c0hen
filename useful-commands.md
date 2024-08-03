@@ -30,7 +30,7 @@ operate on s (the line variable).
 echo -e "example\nwikipedia" | pz 's += ".com"'
 ```
 
-### mail
+#### mail
 
 [mailutils.txt](https://mailutils.org/manual/mailutils.txt)
 
@@ -48,7 +48,7 @@ With mail open, match string from the body.
 h :/\\[SPAM\\]
 ```
 
-Match string from the header.
+Match string from the header From.
 
 ```
 h From:/root
