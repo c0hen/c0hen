@@ -13,6 +13,78 @@ tags: command shell script
 * Table of contents
 {:toc}
 
+#### replace in place with sed
+```sh
+sed -i -e 's/^/#/' filename
+```
+#### -u to turn off buffering for sed
+
+```sh
+dmesg -T --follow | sed -u -e "s/^/$HOSTNAME/"
+```
+
+#### pz (pythonize shell)
+
+operate on s (the line variable).
+```sh
+echo -e "example\nwikipedia" | pz 's += ".com"'
+```
+
+### mail
+
+[mailutils.txt](https://mailutils.org/manual/mailutils.txt)
+
+3.5.2.1 Syntax of mail internal commands
+
+Open the default inbox (mbox) instead of the spool file.
+
+```sh
+mail -f
+```
+
+With mail open, match string from the body.
+
+```
+h :/\\[SPAM\\]
+```
+
+Match string from the header.
+
+```
+h From:/root
+```
+
+Header is Subject if omitted.
+Escaped to prevent an attempt to POSIX regex match.
+
+```
+h /\\[SPAM\\]
+```
+
+Delete matching messages.
+
+```
+d /\\[SPAM\\]
+```
+
+#### moreutils
+
+chronic: runs a command quietly unless it fails
+combine: combine the lines in two files using boolean operations
+errno: look up errno names and descriptions
+ifdata: get network interface info without parsing ifconfig output
+isutf8: check if a file or standard input is utf-8
+ifne: run a command if the standard input is not empty
+lckdo: execute a program with a lock held (deprecated)
+mispipe: pipe two commands, returning the exit status of the first
+parallel: run multiple jobs at once
+pee: tee standard input to pipes
+sponge: soak up standard input and write to a file
+ts: timestamp standard input
+vidir: edit a directory in your text editor
+vipe: insert a text editor into a pipe
+zrun: automatically uncompress arguments to command
+
 #### ncdu equivalent
 
 For when [ncdu](https://dev.yorhel.nl/ncdu) is not installed.
