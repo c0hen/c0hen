@@ -1,2 +1,2 @@
-# TODO: produces error date not found. Using global bundle install for now.
-bundle install --path github/jekyll
+#bundle config set --local path 'github/jekyll' # required before first run
+bundle install
