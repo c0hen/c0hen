@@ -1,7 +1,8 @@
 description: Journal of my tinkering.
 name: C0hen
 encoding: utf-8
-exclude: [LICENSE]
+exclude:
+  - LICENCE
 markdown: kramdown
 permalink: /:slug/
 favorite_color: blue
