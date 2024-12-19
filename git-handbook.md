@@ -126,6 +126,14 @@ The fetch will download all the recent changes, but it will not put it in your c
 
 The checkout will update the working tree with the particular file from the downloaded changes (origin/master).
 
+#### Checkout file deleted by previous commit
+
+The deleting commit for checking out is retrieved by rev-list. The commit before it is referenced by ^ .
+
+```sh
+git checkout $(git rev-list -n 1 HEAD -- "path/file")^ -- "path/file"
+```
+
 #### Rebase when pulling and before pushing
 
 ```
