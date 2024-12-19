@@ -128,10 +128,16 @@ The checkout will update the working tree with the particular file from the down
 
 #### Checkout file deleted by previous commit
 
-The deleting commit for checking out is retrieved by rev-list. The commit before it is referenced by ^ .
+The deleting commit for checking out is retrieved by rev-list. The commit before it is referenced by ^ or ~1 (search "ancestry references" for info) .
 
 ```sh
 git checkout $(git rev-list -n 1 HEAD -- "path/file")^ -- "path/file"
+```
+
+#### Get commits with deleted files and the files deleted
+
+```sh
+git log --diff-filter=D --summary
 ```
 
 #### Rebase when pulling and before pushing
